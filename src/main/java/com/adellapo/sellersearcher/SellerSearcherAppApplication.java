@@ -9,6 +9,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import com.adellapo.sellersearcher.domain.Search;
 import com.adellapo.sellersearcher.test.domain.Otro;
 
 /**
@@ -38,10 +39,15 @@ public class SellerSearcherAppApplication {
 
 			// test de RestTemplate
 			Otro otro = restTemplate.getForObject("https://gturnquist-quoters.cfapps.io/api/random", Otro.class);
-			
+
 			// logeo de testing
 			log.info(otro.toString());
 
+			String siteId = "MLA";
+			String sellerId = "179571326";
+			Search search = restTemplate.getForObject("https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId, Search.class);
+			log.info(search.toString());
+			
 		};
 	}
 
