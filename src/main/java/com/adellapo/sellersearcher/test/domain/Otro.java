@@ -1,27 +1,28 @@
 /**
  * 
  */
-package com.adellapo.sellersearcher.domain;
+package com.adellapo.sellersearcher.test.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties.Value;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
  * @author Andres
- * @link www.github.com/adellapo/
- * @version
+ * @link https://www.github.com/adellapo/seller-searcher-app
+ * @version 1.0
  * @since Sep 5, 2020
  */
-public class Quote {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Otro {
 
 	private String type;
 	private Value value;
 
-	public Quote() {
+	public Otro() {
 		super();
 	}
 
-	public Quote(String type, Value value) {
+	public Otro(String type, Value value) {
 		super();
 		this.type = type;
 		this.value = value;
@@ -57,7 +58,7 @@ public class Quote {
 
 	@Override
 	public String toString() {
-		return "Quote [type=" + type + ", value=" + value + "]";
+		return "Otro [type=" + type + ", value=" + value + "]";
 	}
 
 }
