@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Seller Searcher App</title>
+</head>
+
+<body>
+
+	<p>- Home -</p>
+
+	<p>Site ID:</p>
+	<p th:text="${dataSearch.siteId}"></p>
+
+	<div class="form-group">
+		<label for="siteId" class="form-control-label">site_id:</label> <input
+			id="siteId" class="form-control" name="siteId" type="text" th:value="${dataSearch.siteId}" />
+	</div>
+
+	<div class="form-group">
+		<label for="seller" class="form-control-label">seller_id:</label>
+		<input id="seller" class="form-control" name="seller" type="text" th:value="${dataSearch.seller.id}" />
+	</div>
+
+	<div class="form-group">
+		<label for="results" class="form-control-label">seller_nickname:</label>
+		<input id="results" class="form-control" name="results" type="text" th:value="${dataSearch.seller.nickname}" />
+	</div>
+	
+	
+	<p>results:</p>
+	<table class="table taable-hover">
+
+		<thead>
+			<tr>
+				<th>result_id</th>
+				<th>result_site_id</th>
+				<th>result_title</th>
+				<th>result_category_id</th>
+				<th>result_category_name</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="result :${dataSearch.results}">
+				<td th:text="${result.id}"></td>
+				<td th:text="${result.siteId}"></td>
+				<td th:text="${result.title}"></td>
+				<td th:text="${result.categoryId}"></td>
+				<td>-</td>
+			</tr>
+		</tbody>
+		
+	</table>
+
+</body>
+
+</html>

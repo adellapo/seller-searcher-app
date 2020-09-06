@@ -19,9 +19,9 @@ public class Search {
 	private String siteId;
 	private Seller seller;
 	private ArrayList<Result> results;
-	
+
 	public Search() {
-		
+
 	}
 
 	/**

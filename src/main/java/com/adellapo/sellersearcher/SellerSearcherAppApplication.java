@@ -45,9 +45,10 @@ public class SellerSearcherAppApplication {
 
 			String siteId = "MLA";
 			String sellerId = "179571326";
-			Search search = restTemplate.getForObject("https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId, Search.class);
+			Search search = restTemplate.getForObject(
+					"https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId, Search.class);
 			log.info(search.toString());
-			
+
 		};
 	}
 
