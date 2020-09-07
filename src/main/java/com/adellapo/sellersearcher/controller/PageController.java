@@ -19,7 +19,7 @@ public class PageController {
 	private Search search;
 	private RestTemplate rt;
 
-	private String siteId = "MLA";
+	private String siteId = "";
 	private String sellerId = ""; // 179571326
 
 	@GetMapping(value = { "/" })
@@ -68,16 +68,16 @@ public class PageController {
 	}
 
 	@Bean
-	public RestTemplate restTemplate2(RestTemplateBuilder builder) {
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
 
 	@Bean
-	public RestTemplate getSearch(RestTemplate restTemplate2) throws Exception {
+	public RestTemplate getSearch(RestTemplate restTemplate) throws Exception {
 
-		this.rt = restTemplate2;
+		this.rt = restTemplate;
 
-		return restTemplate2;
+		return restTemplate;
 
 	}
 

@@ -1,16 +1,7 @@
 package com.adellapo.sellersearcher;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-
-import com.adellapo.sellersearcher.domain.Search;
-import com.adellapo.sellersearcher.test.domain.Otro;
 
 /**
  * 
@@ -22,34 +13,8 @@ import com.adellapo.sellersearcher.test.domain.Otro;
 @SpringBootApplication
 public class SellerSearcherAppApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(SellerSearcherAppApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(SellerSearcherAppApplication.class, args);
-	}
-
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
-
-	@Bean
-	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-		return args -> {
-
-			// test de RestTemplate
-			Otro otro = restTemplate.getForObject("https://gturnquist-quoters.cfapps.io/api/random", Otro.class);
-
-			// logeo de testing
-			log.info(otro.toString());
-
-			String siteId = "MLA";
-			String sellerId = "179571326";
-			Search search = restTemplate.getForObject(
-					"https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId, Search.class);
-			log.info(search.toString());
-
-		};
 	}
 
 }
