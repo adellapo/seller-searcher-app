@@ -39,7 +39,9 @@ public class PageController {
 	 */
 	@GetMapping(value = { "/" })
 	public String showHomePage(Model model) {
-
+		
+		siteId = "";
+		sellerId = "";
 		search = new Search();
 
 		model.addAttribute("dataSearch", search);
