@@ -1,7 +1,5 @@
 package com.adellapo.sellersearcher.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -38,25 +36,34 @@ public class PageController {
 	@PostMapping(value = { "/" })
 	public String search(@ModelAttribute Search dataSearch, Model model) {
 
-		siteId = dataSearch.getSiteId();
+		try {
 
-		sellerId = String.valueOf(dataSearch.getSeller().getId());
-
-		search = rt.getForObject("https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId,
-				Search.class);
-
-		for (Result r : search.getResults()) {
-
-			Category c = rt.getForObject("https://api.mercadolibre.com/categories/" + r.getCategoryId(),
-					Category.class);
-
-			r.setCategoryName(c.getName());
-
+			siteId = dataSearch.getSiteId();
+			
+			sellerId = String.valueOf(dataSearch.getSeller().getId());
+			
+			search = rt.getForObject("https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId,
+					Search.class);
+			
+			for (Result r : search.getResults()) {
+				
+				Category c = rt.getForObject("https://api.mercadolibre.com/categories/" + r.getCategoryId(),
+						Category.class);
+				
+				r.setCategoryName(c.getName());
+				
+			}
+			
+			model.addAttribute("dataSearch", search);
+			
+			return "index";
+			
+		} catch (Exception e) {
+			
+			return "error";
+		
 		}
-
-		model.addAttribute("dataSearch", search);
-
-		return "index";
+		
 
 	}
 

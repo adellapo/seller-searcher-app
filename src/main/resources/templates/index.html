@@ -2,72 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<title>Seller Searcher App</title>
-<!-- Herramientas -->
-<script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<meta charset="UTF-8">
+	<title>Seller Searcher App</title>
+	<!-- Herramientas -->
+	<script type="text/javascript" src="webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="webjars/bootstrap/4.5.2/css/bootstrap.min.css" />
+	<link rel="stylesheet" th:href="@{css/main.css}" href="../static/css/main.css"/>
 </head>
 
 <body>
 
-	<div class="fluid-container"></div>
-	<p>Site ID: MLA</p>
-
-	<h1>Form</h1>
+	<div class="container">
 	
-	<form action="#" th:action="@{/}" th:object="${dataSearch}"
-		method="post">
-
-<!-- 		<p> -->
-<!-- 			Site Id:  -->
-<!-- 			<input id="txtSiteId" type="text" th:field="*{siteId}" />		 -->
-<!-- 		</p> -->
-<!-- 		<p> -->
-<!-- 			Seller Id: <input type="text" th:field="*{seller.id}" /> -->
-<!-- 		</p> -->
+		<br/>
 		
-		<div class="form-group">
-			<label for="txtSiteId">Site ID:</label>
-			<input id="txtSiteId" type="text" th:field="*{siteId}" />		
-		</div>
-		<div class="form-group">
-			<label for="txtSellerId">Site ID:</label>
-			<input id="txtSellerId" type="text" th:field="*{seller.id}" />		
-		</div>
-		<p>
-			<input type="submit" value="Submit" />
-		</p>
-	</form>
+		<form action="#" th:action="@{/}" th:object="${dataSearch}" method="post" class="form-inline">
+	
+			<div class="sellerCtrl form-group">
+				<label for="txtSiteId">Site ID:</label>
+				<input id="txtSiteId" type="text" th:field="*{siteId}" placeholder="Enter a valid Site ID" required="required" />		
+			</div>
+			
+			<div class="sellerCtrl form-group">
+				<label for="txtSellerId">Seller ID:</label>
+				<input id="txtSellerId" type="text" th:field="*{seller.id}" placeholder="Enter a valid Seller ID" required="required"/>		
+			</div>
+			
+			<div class="sellerCtrl">
+				<input type="submit" value="Search" class="btn btn-primary"/>
+			</div>
 
-
-	<p>results:</p>
-	<table class="table table-hover">
-
-		<thead>
-			<tr>
-				<th>result_id</th>
-				<th>result_site_id</th>
-				<th>result_title</th>
-				<th>result_category_id</th>
-				<th>result_category_name</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr th:each="result :${dataSearch.results}">
-				<td th:text="${result.id}"></td>
-				<td th:text="${result.siteId}"></td>
-				<td th:text="${result.title}"></td>
-				<td th:text="${result.categoryId}"></td>
-				<td th:text="${result.categoryName}"></td>
-			</tr>
-		</tbody>
-
-	</table>
+		</form>
+		
+		<br/>
+		
+		<p>Results:</p>
+		
+		<table class="table table-hover">
+	
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Site ID</th>
+					<th>Title</th>
+					<th>Category ID</th>
+					<th>Category Name</th>
+				</tr>
+			</thead>
+	
+			<tbody>
+				<tr th:each="result :${dataSearch.results}">
+					<td th:text="${result.id}"></td>
+					<td th:text="${result.siteId}"></td>
+					<td th:text="${result.title}"></td>
+					<td th:text="${result.categoryId}"></td>
+					<td th:text="${result.categoryName}"></td>
+				</tr>
+			</tbody>
+	
+		</table>
+		
+	</div>
 
 
 

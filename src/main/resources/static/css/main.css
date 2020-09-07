@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.sellerCtrl {
+	margin-right: 20px;
+}
+
+.table thead {
+	font-weight: bold;
+}
