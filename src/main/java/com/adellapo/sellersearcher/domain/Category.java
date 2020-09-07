@@ -2,6 +2,13 @@ package com.adellapo.sellersearcher.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * 
+ * @author Andres
+ * @see <a href="https://github.com/adellapo/seller-searcher-app/" target="_blank">Github Repo</a>
+ * @version 1.0
+ * @since Sep 7, 2020
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Category {
 

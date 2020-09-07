@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * 
  * @author Andres
- * @link https://www.github.com/adellapo/seller-searcher-app
+ * @see <a href="https://github.com/adellapo/seller-searcher-app/" target="_blank">Github Repo</a>
  * @version 1.0
- * @since Sep 5, 2020
+ * @since Sep 7, 2020
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Search {

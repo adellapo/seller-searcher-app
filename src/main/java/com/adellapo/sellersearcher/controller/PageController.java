@@ -16,15 +16,27 @@ import com.adellapo.sellersearcher.domain.Category;
 import com.adellapo.sellersearcher.domain.Result;
 import com.adellapo.sellersearcher.domain.Search;
 
+/**
+ * 
+ * @author Andres
+ * @see <a href="https://github.com/adellapo/seller-searcher-app/" target=
+ *      "_blank">Github Repo</a>
+ * @version 1.0
+ * @since Sep 7, 2020
+ */
 @Controller
 public class PageController {
 
 	private Search search;
 	private RestTemplate rt;
-
 	private String siteId = "";
 	private String sellerId = ""; // 179571326
 
+	/**
+	 * 
+	 * @param model Model
+	 * @return String with the required Template page
+	 */
 	@GetMapping(value = { "/" })
 	public String showHomePage(Model model) {
 
@@ -36,6 +48,12 @@ public class PageController {
 
 	}
 
+	/**
+	 * 
+	 * @param ds ModelAttribute
+	 * @param model Model
+	 * @return String with the required Template page
+	 */
 	@PostMapping(value = { "/" })
 	public String search(@ModelAttribute Search ds, Model model) {
 
@@ -81,11 +99,22 @@ public class PageController {
 
 	}
 
+	/**
+	 * 
+	 * @param builder RestTemplateBuilder
+	 * @return RestTemplate
+	 */
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
 
+	/**
+	 * 
+	 * @param restTemplate RestTemplate
+	 * @return RestTemplate
+	 * @throws Exception -
+	 */
 	@Bean
 	public RestTemplate getSearch(RestTemplate restTemplate) throws Exception {
 
