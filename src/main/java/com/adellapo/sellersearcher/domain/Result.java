@@ -1,5 +1,6 @@
 package com.adellapo.sellersearcher.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,6 +20,8 @@ public class Result {
 	private String title;
 	@JsonProperty(value = "category_id")
 	private String categoryId;
+	@JsonIgnore
+	private String categoryName;
 
 	public Result() {
 	}
@@ -77,6 +80,20 @@ public class Result {
 	 */
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	/**
+	 * @return the categoryName
+	 */
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	/**
+	 * @param categoryName the categoryName to set
+	 */
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	@Override

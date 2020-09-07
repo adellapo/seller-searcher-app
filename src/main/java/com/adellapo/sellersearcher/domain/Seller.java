@@ -1,5 +1,8 @@
 package com.adellapo.sellersearcher.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -9,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @version 1.0
  * @since Sep 5, 2020
  */
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Seller {
 
+	@Id
 	private Long id;
 	private String nickname;
 

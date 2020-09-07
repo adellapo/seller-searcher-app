@@ -4,33 +4,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Seller Searcher App</title>
+<!-- Herramientas -->
+<script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 
 <body>
 
-	<p>- Home -</p>
+	<div class="fluid-container"></div>
+	<p>Site ID: MLA</p>
 
-	<p>Site ID:</p>
-	<p th:text="${dataSearch.siteId}"></p>
-
-	<div class="form-group">
-		<label for="siteId" class="form-control-label">site_id:</label> <input
-			id="siteId" class="form-control" name="siteId" type="text" th:value="${dataSearch.siteId}" />
-	</div>
-
-	<div class="form-group">
-		<label for="seller" class="form-control-label">seller_id:</label>
-		<input id="seller" class="form-control" name="seller" type="text" th:value="${dataSearch.seller.id}" />
-	</div>
-
-	<div class="form-group">
-		<label for="results" class="form-control-label">seller_nickname:</label>
-		<input id="results" class="form-control" name="results" type="text" th:value="${dataSearch.seller.nickname}" />
-	</div>
+	<h1>Form</h1>
 	
-	
+	<form action="#" th:action="@{/}" th:object="${dataSearch}"
+		method="post">
+
+<!-- 		<p> -->
+<!-- 			Site Id:  -->
+<!-- 			<input id="txtSiteId" type="text" th:field="*{siteId}" />		 -->
+<!-- 		</p> -->
+<!-- 		<p> -->
+<!-- 			Seller Id: <input type="text" th:field="*{seller.id}" /> -->
+<!-- 		</p> -->
+		
+		<div class="form-group">
+			<label for="txtSiteId">Site ID:</label>
+			<input id="txtSiteId" type="text" th:field="*{siteId}" />		
+		</div>
+		<div class="form-group">
+			<label for="txtSellerId">Site ID:</label>
+			<input id="txtSellerId" type="text" th:field="*{seller.id}" />		
+		</div>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	</form>
+
+
 	<p>results:</p>
-	<table class="table taable-hover">
+	<table class="table table-hover">
 
 		<thead>
 			<tr>
@@ -41,18 +56,20 @@
 				<th>result_category_name</th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 			<tr th:each="result :${dataSearch.results}">
 				<td th:text="${result.id}"></td>
 				<td th:text="${result.siteId}"></td>
 				<td th:text="${result.title}"></td>
 				<td th:text="${result.categoryId}"></td>
-				<td>-</td>
+				<td th:text="${result.categoryName}"></td>
 			</tr>
 		</tbody>
-		
+
 	</table>
+
+
 
 </body>
 
