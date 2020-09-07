@@ -1,5 +1,8 @@
 package com.adellapo.sellersearcher.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -34,36 +37,47 @@ public class PageController {
 	}
 
 	@PostMapping(value = { "/" })
-	public String search(@ModelAttribute Search dataSearch, Model model) {
+	public String search(@ModelAttribute Search ds, Model model) {
 
 		try {
 
-			siteId = dataSearch.getSiteId();
-			
-			sellerId = String.valueOf(dataSearch.getSeller().getId());
-			
+			siteId = ds.getSiteId();
+
+			sellerId = String.valueOf(ds.getSeller().getId());
+
 			search = rt.getForObject("https://api.mercadolibre.com/sites/" + siteId + "/search?seller_id=" + sellerId,
 					Search.class);
-			
+
 			for (Result r : search.getResults()) {
-				
+
 				Category c = rt.getForObject("https://api.mercadolibre.com/categories/" + r.getCategoryId(),
 						Category.class);
-				
+
 				r.setCategoryName(c.getName());
-				
+
 			}
-			
+
 			model.addAttribute("dataSearch", search);
-			
+
+			FileOutputStream fos = new FileOutputStream("./src/main/resources/static/output/output.txt");
+
+			search.toString().chars().forEach(chr -> {
+				try {
+					fos.write((char) chr);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+
+			fos.close();
+
 			return "index";
-			
+
 		} catch (Exception e) {
-			
+
 			return "error";
-		
+
 		}
-		
 
 	}
 
