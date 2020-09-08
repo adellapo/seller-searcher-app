@@ -91,6 +91,11 @@ public class PageController {
 
 			fos.close();
 
+			
+			siteId = "";
+			sellerId = "";
+			search = new Search();
+			
 			return "index";
 
 		} catch (Exception e) {
